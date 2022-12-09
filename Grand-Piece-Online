@@ -26,7 +26,7 @@ for i, v in pairs(WhiteList) do
                 Subtitle = "Key System",
                 Note = "Join the discord (discord.gg/OnlHub)",
                 FileName = "Onl Key",
-                SaveKey = true,
+                SaveKey = false,
                 GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get
                 Key = "s"
             }
@@ -41,35 +41,36 @@ for i, v in pairs(WhiteList) do
         _G.Running = false
         
         _G.Jump = false
-        
+
+        local ShiftLocker = "LeftShift"
         -- Funcions
         
         function HitboxSize()
-            for i, Players in pairs(game.Players:GetChildren()) do
-                if Players.Name ~= Player.Name then
-                    if Players.Character:FindFirstChild("HumanoidRootPart") then
-                        Players.Character.HumanoidRootPart.Size = Vector3.new(Hitbox,Hitbox,Hitbox)
-                    else
-                        if Players.Character.Shirt.UpperTorso:FindFirstChild("HumanoidRootPart") then
-                            Players.Character.HumanoidRootPart.Size = Vector3.new(Hitbox,Hitbox,Hitbox)
-                        end
-                    end
-                end
-            end
+            -- for i, Players in pairs(game.Players:GetChildren()) do
+            --     if Players.Name ~= Player.Name then
+            --         if Players.Character:FindFirstChild("HumanoidRootPart") then
+            --             Players.Character.HumanoidRootPart.Size = Vector3.new(Hitbox,Hitbox,Hitbox)
+            --         else
+            --             if Players.Character.Shirt.UpperTorso:FindFirstChild("HumanoidRootPart") then
+            --                 Players.Character.HumanoidRootPart.Size = Vector3.new(Hitbox,Hitbox,Hitbox)
+            --             end
+            --         end
+            --     end
+            -- end
         end
         
         function HitboxTrans()
-            for i, Players in pairs(game.Players:GetChildren()) do
-                if Players.Name ~= Player.Name then
-                    if Players.Character:FindFirstChild("HumanoidRootPart") then
-                        Players.Character.HumanoidRootPart.Transparency = HitboxVis
-                    else
-                        if Players.Character.Shirt.UpperTorso:FindFirstChild("HumanoidRootPart") then
-                            Players.Character.HumanoidRootPart.Transparency = HitboxVis
-                        end
-                    end
-                end
-            end
+            -- for i, Players in pairs(game.Players:GetChildren()) do
+            --     if Players.Name ~= Player.Name then
+            --         if Players.Character:FindFirstChild("HumanoidRootPart") then
+            --             Players.Character.HumanoidRootPart.Transparency = HitboxVis
+            --         else
+            --             if Players.Character.Shirt.UpperTorso:FindFirstChild("HumanoidRootPart") then
+            --                 Players.Character.HumanoidRootPart.Transparency = HitboxVis
+            --             end
+            --         end
+            --     end
+            -- end
         end
         
         function WalkSpeedBypas()
@@ -92,7 +93,7 @@ for i, v in pairs(WhiteList) do
         function WalkSpeedBypas1()
             local UIS = game:GetService'UserInputService';
             UIS.InputBegan:connect(function(UserInput)
-                    if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.LeftControl then
+                    if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.LeftShift then
                         _G.Running = true
                             while wait() and _G.Running == true do
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 1.35
@@ -100,7 +101,7 @@ for i, v in pairs(WhiteList) do
                     end
             end)
             UIS.InputEnded:connect(function(UserInput)
-                    if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.LeftControl then
+                    if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.LeftShift then
                             _G.Running = false
                     end
             end)
@@ -169,11 +170,33 @@ for i, v in pairs(WhiteList) do
         })
         
         local ButtonWalkSpeed = PlayerTab:CreateButton({
-            Name = "WalkSpeed Bypass (LeftControl)",
+            Name = "WalkSpeed Bypass (LeftShift)",
             Callback = function()
                 WalkSpeedBypas1()
             end,
         })
+
+        function ShiftLockS()
+            Player.PlayerScripts.PlayerModule.CameraModule.MouseLockController.BoundKeys.Value = "LeftAlt"
+        end
+
+        local Shi = PlayerTab:CreateButton({
+            Name = "Set ShiftLock To (LeftAlt)",
+            Callback = function()
+                ShiftLockS()
+            end,
+        })
+
+        -- local KeybindSF = PlayerTab:CreateKeybind({
+        --     Name = "Coustme ShiftLock",
+        --     CurrentKeybind = "LeftShift",
+        --     HoldToInteract = false,
+        --     Flag = "Keybind1ShiftLocK", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        --     Callback = function(Keybind)
+        --         ShiftLockS()
+        --             _G.ShiftLocker = Keybind
+        --     end,
+        -- })
         
         -- local ButtonInfJump = PlayerTab:CreateButton({
         -- 	Name = "Infinty Jump",
@@ -182,11 +205,11 @@ for i, v in pairs(WhiteList) do
         -- 	end,
         -- })
         
-        local ButtonInfJump = PlayerTab:CreateButton({
-            Name = "Esp",
-            Callback = function()
-                Esp()
-            end,
-        })
+--         local ButtonInfJump = PlayerTab:CreateButton({
+--             Name = "Esp",
+--             Callback = function()
+--                 Esp()
+--             end,
+--         })
     end
 end
