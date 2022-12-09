@@ -20,13 +20,13 @@ for i, v in pairs(WhiteList) do
                     Invite = "physics", -- The Discord invite code, do not include discord.gg/
                     RememberJoins = true -- Set this to false to make them join the discord every time they load it up
                 },
-            KeySystem = true, -- Set this to true to use our key system
+            KeySystem = false, -- Set this to true to use our key system
             KeySettings = {
                 Title = "Onl Hub",
                 Subtitle = "Key System",
                 Note = "Join the discord (discord.gg/OnlHub)",
                 FileName = "Onl Key",
-                SaveKey = false,
+                SaveKey = true,
                 GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get
                 Key = "s"
             }
