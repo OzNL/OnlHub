@@ -2,191 +2,189 @@ local Player = game.Players.LocalPlayer
 
 local WhiteList = {3059774410, 3415469383}
 
-for i, v in pairs(WhiteList) do
-    if Player.UserId = v then
-        local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
-    
-        local Window = Rayfield:CreateWindow({
-            Name = "Onl Hub",
-            LoadingTitle = "Onl Hub",
-            LoadingSubtitle = "by Onl",
-            ConfigurationSaving = {
+if Player.UserId = 3059774410 or 3415469383 then
+    local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+
+    local Window = Rayfield:CreateWindow({
+        Name = "Onl Hub",
+        LoadingTitle = "Onl Hub",
+        LoadingSubtitle = "by Onl",
+        ConfigurationSaving = {
+            Enabled = true,
+            FolderName = nil, -- Create a custom folder for your hub/game
+            FileName = "Big Hub"
+        },
+            Discord = {
                 Enabled = true,
-                FolderName = nil, -- Create a custom folder for your hub/game
-                FileName = "Big Hub"
+                Invite = "physics", -- The Discord invite code, do not include discord.gg/
+                RememberJoins = true -- Set this to false to make them join the discord every time they load it up
             },
-                Discord = {
-                    Enabled = true,
-                    Invite = "physics", -- The Discord invite code, do not include discord.gg/
-                    RememberJoins = true -- Set this to false to make them join the discord every time they load it up
-                },
-            KeySystem = true, -- Set this to true to use our key system
-            KeySettings = {
-                Title = "Onl Hub",
-                Subtitle = "Key System",
-                Note = "Join the discord (discord.gg/OnlHub)",
-                FileName = "Onl Key",
-                SaveKey = false,
-                GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get
-                Key = "s"
-            }
-        })
-        
-        -- Varibales
-        
-        local Hitbox = 2
-        
-        local HitboxVis = 0
-        
-        _G.Running = false
-        
-        _G.Jump = false
-        
-        -- Funcions
-        
-        function HitboxSize()
-            for i, Players in pairs(game.Players:GetChildren()) do
-                if Players.Name ~= Player.Name then
-                    if Players.Character:FindFirstChild("HumanoidRootPart") then
+        KeySystem = true, -- Set this to true to use our key system
+        KeySettings = {
+            Title = "Onl Hub",
+            Subtitle = "Key System",
+            Note = "Join the discord (discord.gg/OnlHub)",
+            FileName = "Onl Key",
+            SaveKey = false,
+            GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get
+            Key = "s"
+        }
+    })
+    
+    -- Varibales
+    
+    local Hitbox = 2
+    
+    local HitboxVis = 0
+    
+    _G.Running = false
+    
+    _G.Jump = false
+    
+    -- Funcions
+    
+    function HitboxSize()
+        for i, Players in pairs(game.Players:GetChildren()) do
+            if Players.Name ~= Player.Name then
+                if Players.Character:FindFirstChild("HumanoidRootPart") then
+                    Players.Character.HumanoidRootPart.Size = Vector3.new(Hitbox,Hitbox,Hitbox)
+                else
+                    if Players.Character.Shirt.UpperTorso:FindFirstChild("HumanoidRootPart") then
                         Players.Character.HumanoidRootPart.Size = Vector3.new(Hitbox,Hitbox,Hitbox)
-                    else
-                        if Players.Character.Shirt.UpperTorso:FindFirstChild("HumanoidRootPart") then
-                            Players.Character.HumanoidRootPart.Size = Vector3.new(Hitbox,Hitbox,Hitbox)
-                        end
                     end
                 end
             end
         end
-        
-        function HitboxTrans()
-            for i, Players in pairs(game.Players:GetChildren()) do
-                if Players.Name ~= Player.Name then
-                    if Players.Character:FindFirstChild("HumanoidRootPart") then
+    end
+    
+    function HitboxTrans()
+        for i, Players in pairs(game.Players:GetChildren()) do
+            if Players.Name ~= Player.Name then
+                if Players.Character:FindFirstChild("HumanoidRootPart") then
+                    Players.Character.HumanoidRootPart.Transparency = HitboxVis
+                else
+                    if Players.Character.Shirt.UpperTorso:FindFirstChild("HumanoidRootPart") then
                         Players.Character.HumanoidRootPart.Transparency = HitboxVis
-                    else
-                        if Players.Character.Shirt.UpperTorso:FindFirstChild("HumanoidRootPart") then
-                            Players.Character.HumanoidRootPart.Transparency = HitboxVis
-                        end
                     end
                 end
             end
         end
-        
-        function WalkSpeedBypas()
-            local UIS = game:GetService'UserInputService';
-            UIS.InputBegan:connect(function(UserInput)
-                    if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.W or Enum.KeyCode.S or Enum.KeyCode.D or Enum.KeyCode.A then
-                        _G.Running = true
-                            while wait() and _G.Running == true do
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.CharacterHumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 1.3
-            end
-                    end
-            end)
-            UIS.InputEnded:connect(function(UserInput)
-                    if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.W or Enum.KeyCode.S or Enum.KeyCode.D or Enum.KeyCode.A then
-                            _G.Running = false
-                    end
-            end)
+    end
+    
+    function WalkSpeedBypas()
+        local UIS = game:GetService'UserInputService';
+        UIS.InputBegan:connect(function(UserInput)
+                if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.W or Enum.KeyCode.S or Enum.KeyCode.D or Enum.KeyCode.A then
+                    _G.Running = true
+                        while wait() and _G.Running == true do
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.CharacterHumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 1.3
         end
-        
-        function WalkSpeedBypas1()
-            local UIS = game:GetService'UserInputService';
-            UIS.InputBegan:connect(function(UserInput)
-                    if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.LeftControl then
-                        _G.Running = true
-                            while wait() and _G.Running == true do
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 1.35
-            end
-                    end
-            end)
-            UIS.InputEnded:connect(function(UserInput)
-                    if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.LeftControl then
-                            _G.Running = false
-                    end
-            end)
+                end
+        end)
+        UIS.InputEnded:connect(function(UserInput)
+                if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.W or Enum.KeyCode.S or Enum.KeyCode.D or Enum.KeyCode.A then
+                        _G.Running = false
+                end
+        end)
+    end
+    
+    function WalkSpeedBypas1()
+        local UIS = game:GetService'UserInputService';
+        UIS.InputBegan:connect(function(UserInput)
+                if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.LeftAlt then
+                    _G.Running = true
+                        while wait() and _G.Running == true do
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 1.35
         end
-        
-        function InfinteyJump()
-            local UIS = game:GetService'UserInputService';
-            UIS.InputBegan:connect(function(UserInput)
-                    if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.Space then
-                        _G.Jump = true
-                            while wait() and _G.Jump == true do
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y * 5
+                end
+        end)
+        UIS.InputEnded:connect(function(UserInput)
+                if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.LeftAlt then
+                        _G.Running = false
+                end
+        end)
+    end
+    
+    function InfinteyJump()
+        local UIS = game:GetService'UserInputService';
+        UIS.InputBegan:connect(function(UserInput)
+                if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.Space then
+                    _G.Jump = true
+                        while wait() and _G.Jump == true do
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y * 5
+    end
         end
+    end)
+        UIS.InputEnded:connect(function(UserInput)
+            if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.Space then
+                _G.Jump = false
             end
         end)
-            UIS.InputEnded:connect(function(UserInput)
-                if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.Space then
-                    _G.Jump = false
-                end
-            end)
-        end
-        
-        function Esp()
-            for i, Players in pairs(game.Players:GetChildren()) do
-                if Players.Name ~= Player.Name then
-                    if Players.Character:FindFirstChild("HumanoidRootPart") then
-                        local Highlight = Instance.new("Highlight", Players.Character)
-                        Highlight.FillTransparency = 0.5
-                        Highlight.OutlineColor = Color3.fromRGB(255,0,0)
-                        Highlight.FillTransparency = Color3.fromRGB(255,0,0)
-                    end
+    end
+    
+    function Esp()
+        for i, Players in pairs(game.Players:GetChildren()) do
+            if Players.Name ~= Player.Name then
+                if Players.Character:FindFirstChild("HumanoidRootPart") then
+                    local Highlight = Instance.new("Highlight", Players.Character)
+                    Highlight.FillTransparency = 0.5
+                    Highlight.OutlineColor = Color3.fromRGB(255,0,0)
+                    Highlight.FillTransparency = Color3.fromRGB(255,0,0)
                 end
             end
         end
-        
-        local Tab = Window:CreateTab("Main", 4483362458)
-        
-        local PlayerTab = Window:CreateTab("Player", 4483362458)
-        
-        local Section = Tab:CreateSection("Player")
-        
-        local SliderHitboxSize = Tab:CreateSlider({
-            Name = "Hitbox Size",
-            Range = {0, 50},
-            Increment = 1,
-            Suffix = "Hitbox",
-            CurrentValue = 2,
-            Flag = "SliderHitbox1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-            Callback = function(Value)
-                HitboxSize()
-                    Hitbox = Value
-            end,
-        })
-        
-        local SliderHitboxTran = Tab:CreateSlider({
-            Name = "Hitbox Transparency",
-            Range = {0, 1},
-            Increment = 0.1,
-            Suffix = "Hitbox",
-            CurrentValue = 0,
-            Flag = "SliderHitboxTrans1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-            Callback = function(Value)
-                HitboxTrans()
-                    HitboxVis = Value
-            end,
-        })
-        
-        local ButtonWalkSpeed = PlayerTab:CreateButton({
-            Name = "WalkSpeed Bypass (LeftAlt)",
-            Callback = function()
-                WalkSpeedBypas1()
-            end,
-        })
-        
-        -- local ButtonInfJump = PlayerTab:CreateButton({
-        -- 	Name = "Infinty Jump",
-        -- 	Callback = function()
-        -- 		InfinteyJump()
-        -- 	end,
-        -- })
-        
-        local ButtonInfJump = PlayerTab:CreateButton({
-            Name = "Esp",
-            Callback = function()
-                Esp()
-            end,
-        })
     end
+    
+    local Tab = Window:CreateTab("Main", 4483362458)
+    
+    local PlayerTab = Window:CreateTab("Player", 4483362458)
+    
+    local Section = Tab:CreateSection("Player")
+    
+    local SliderHitboxSize = Tab:CreateSlider({
+        Name = "Hitbox Size",
+        Range = {0, 50},
+        Increment = 1,
+        Suffix = "Hitbox",
+        CurrentValue = 2,
+        Flag = "SliderHitbox1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            HitboxSize()
+                Hitbox = Value
+        end,
+    })
+    
+    local SliderHitboxTran = Tab:CreateSlider({
+        Name = "Hitbox Transparency",
+        Range = {0, 1},
+        Increment = 0.1,
+        Suffix = "Hitbox",
+        CurrentValue = 0,
+        Flag = "SliderHitboxTrans1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            HitboxTrans()
+                HitboxVis = Value
+        end,
+    })
+    
+    local ButtonWalkSpeed = PlayerTab:CreateButton({
+        Name = "WalkSpeed Bypass (LeftAlt)",
+        Callback = function()
+            WalkSpeedBypas1()
+        end,
+    })
+    
+    -- local ButtonInfJump = PlayerTab:CreateButton({
+    -- 	Name = "Infinty Jump",
+    -- 	Callback = function()
+    -- 		InfinteyJump()
+    -- 	end,
+    -- })
+    
+    local ButtonInfJump = PlayerTab:CreateButton({
+        Name = "Esp",
+        Callback = function()
+            Esp()
+        end,
+    })
 end
