@@ -2,6 +2,7 @@ local Player = game.Players.LocalPlayer
 
 local WhiteList = {3059774410, 3415469383}
 
+for i, v in pairs(WhiteList) do
     if Player.UserId == v then
         local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
     
