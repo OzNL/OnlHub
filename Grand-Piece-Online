@@ -153,15 +153,14 @@ for i, v in pairs(WhiteList) do
         end
         
         function InfinteyJump()
-            local UIS = game:GetService'UserInputService';
-            UIS.InputBegan:connect(function(UserInput)
-                    if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.Space then
-                        _G.Jump = true
-                            while wait() and _G.Jump == true do
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y * 5
+            local InfiniteJumpEnabled = true
+            game:GetService("UserInputService").JumpRequest:Connect(function()
+                if InfiniteJumpEnabled then
+                    wait(.5)
+                    game:GetService"Players".LocalPlayer.Character:FindFirstAncestorOfClass('Humanoid'):ChangeState("Jumping")
+                end
+            end)
         end
-            end
-        end)
             UIS.InputEnded:connect(function(UserInput)
                 if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.Space then
                     _G.Jump = false
@@ -250,12 +249,12 @@ for i, v in pairs(WhiteList) do
         --     end,
         -- })
         
-        -- local ButtonInfJump = PlayerTab:CreateButton({
-        -- 	Name = "Infinty Jump",
-        -- 	Callback = function()
-        -- 		InfinteyJump()
-        -- 	end,
-        -- })
+        local ButtonInfJump = PlayerTab:CreateButton({
+        	Name = "Infinty Jump",
+        	Callback = function()
+        		InfinteyJump()
+        	end,
+        })
         
 --         local ButtonInfJump = PlayerTab:CreateButton({
 --             Name = "Esp",
