@@ -1,6 +1,6 @@
 local Player = game.Players.LocalPlayer
 
-local WhiteList = {3059774410, 3415469383, 4080588271}
+local WhiteList = {3059774410, 3415469383, 1238992162}
 
 for i, v in pairs(WhiteList) do
     if Player.UserId == v then
@@ -37,6 +37,18 @@ for i, v in pairs(WhiteList) do
         local Hitbox = 2
         
         local HitboxVis = 0
+
+        for i, Players in pairs(game.Players:GetChildren()) do
+            if Players.Name ~= Player.Name then
+                if Players.Character:FindFirstChild("HumanoidRootPart") then
+                    Players.Character.HumanoidRootPart.Transparency = HitboxVis
+                else
+                    if Players.Character.Shirt.UpperTorso:FindFirstChild("HumanoidRootPart") then
+                        Players.Character.HumanoidRootPart.Transparency = HitboxVis
+                    end
+                end
+            end
+        end
         
         _G.Running = false
 
@@ -50,17 +62,17 @@ for i, v in pairs(WhiteList) do
         -- Funcions
         
         function HitboxSize()
-            -- for i, Players in pairs(game.Players:GetChildren()) do
-            --     if Players.Name ~= Player.Name then
-            --         if Players.Character:FindFirstChild("HumanoidRootPart") then
-            --             Players.Character.HumanoidRootPart.Size = Vector3.new(Hitbox,Hitbox,Hitbox)
-            --         else
-            --             if Players.Character.Shirt.UpperTorso:FindFirstChild("HumanoidRootPart") then
-            --                 Players.Character.HumanoidRootPart.Size = Vector3.new(Hitbox,Hitbox,Hitbox)
-            --             end
-            --         end
-            --     end
-            -- end
+            for i, Players in pairs(game.Players:GetChildren()) do
+                if Players.Name ~= Player.Name then
+                    if Players.Character:FindFirstChild("HumanoidRootPart") then
+                        Players.Character.HumanoidRootPart.Size = Vector3.new(Hitbox,Hitbox,Hitbox)
+                    else
+                        if Players.Character.Shirt.UpperTorso:FindFirstChild("HumanoidRootPart") then
+                            Players.Character.HumanoidRootPart.Size = Vector3.new(Hitbox,Hitbox,Hitbox)
+                        end
+                    end
+                end
+            end
         end
         
         function HitboxTrans()
@@ -115,15 +127,6 @@ for i, v in pairs(WhiteList) do
 
         function FlySpeed()
 
-            while wait(1) do
-                if Timer == 30 then
-                    _G.NoSpeed = true
-                    break
-                end
-
-                Timer = Timer + 1
-            end
-
             local UIS = game:GetService'UserInputService';
             UIS.InputBegan:connect(function(UserInput)
                     if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.LeftControl and _G.NoSpeed == false then
@@ -138,6 +141,15 @@ for i, v in pairs(WhiteList) do
                             _G.Speed = false
                     end
             end)
+
+            repeat
+                wait(1) Timer += 1
+            until Timer == 30
+
+            if Timer == 30 then
+                _G.NoSpeed = true
+            end
+
         end
         
         function InfinteyJump()
