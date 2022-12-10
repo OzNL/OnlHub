@@ -143,7 +143,7 @@ for i, v in pairs(WhiteList) do
             end)
 
             repeat
-                wait(1) Timer += 1
+                wait(1) Timer += 1 print(Timer)
             until Timer == 30
 
             if Timer == 30 then
