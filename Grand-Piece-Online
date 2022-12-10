@@ -76,17 +76,17 @@ for i, v in pairs(WhiteList) do
         end
         
         function HitboxTrans()
-            -- for i, Players in pairs(game.Players:GetChildren()) do
-            --     if Players.Name ~= Player.Name then
-            --         if Players.Character:FindFirstChild("HumanoidRootPart") then
-            --             Players.Character.HumanoidRootPart.Transparency = HitboxVis
-            --         else
-            --             if Players.Character.Shirt.UpperTorso:FindFirstChild("HumanoidRootPart") then
-            --                 Players.Character.HumanoidRootPart.Transparency = HitboxVis
-            --             end
-            --         end
-            --     end
-            -- end
+            for i, Players in pairs(game.Players:GetChildren()) do
+                if Players.Name ~= Player.Name then
+                    if Players.Character:FindFirstChild("HumanoidRootPart") then
+                        Players.Character.HumanoidRootPart.Transparency = HitboxVis
+                    else
+                        if Players.Character.Shirt.UpperTorso:FindFirstChild("HumanoidRootPart") then
+                            Players.Character.HumanoidRootPart.Transparency = HitboxVis
+                        end
+                    end
+                end
+            end
         end
         
         function WalkSpeedBypas()
@@ -154,10 +154,10 @@ for i, v in pairs(WhiteList) do
         
         function InfinteyJump()
             local InfiniteJumpEnabled = true
-            game:GetService("UserInputService").JumpRequest:Connect(function()
+            game:GetService("UserInputService").JumpRequest:connect(function()
                 if InfiniteJumpEnabled then
-                    wait(.5)
-                    game:GetService"Players".LocalPlayer.Character:FindFirstAncestorOfClass('Humanoid'):ChangeState("Jumping")
+                    wait(.09)
+                    game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
                 end
             end)
         end
@@ -231,17 +231,6 @@ for i, v in pairs(WhiteList) do
                 ShiftLockS()
             end,
         })
-
-        -- local KeybindSF = PlayerTab:CreateKeybind({
-        --     Name = "Coustme ShiftLock",
-        --     CurrentKeybind = "LeftShift",
-        --     HoldToInteract = false,
-        --     Flag = "Keybind1ShiftLocK", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-        --     Callback = function(Keybind)
-        --         ShiftLockS()
-        --             _G.ShiftLocker = Keybind
-        --     end,
-        -- })
         
         local ButtonInfJump = PlayerTab:CreateButton({
         	Name = "Infinty Jump",
@@ -250,11 +239,5 @@ for i, v in pairs(WhiteList) do
         	end,
         })
         
---         local ButtonInfJump = PlayerTab:CreateButton({
---             Name = "Esp",
---             Callback = function()
---                 Esp()
---             end,
---         })
     end
 end
