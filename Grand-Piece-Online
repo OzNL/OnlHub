@@ -129,15 +129,15 @@ for i, v in pairs(WhiteList) do
 
             local UIS = game:GetService'UserInputService';
             UIS.InputBegan:connect(function(UserInput)
-                    if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.LeftControl and _G.NoSpeed == false then
+                    if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.LeftControl then
                         _G.Speed = true
-                            while wait() and _G.Speed == true do
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 2.2
+                            while wait() and _G.Speed == true and _G.NoSpeed == false do
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 2.75
             end
                     end
             end)
             UIS.InputEnded:connect(function(UserInput)
-                    if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.LeftControl and _G.NoSpeed == false then
+                    if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.LeftControl then
                             _G.Speed = false
                     end
             end)
