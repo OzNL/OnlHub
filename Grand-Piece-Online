@@ -161,25 +161,19 @@ for i, v in pairs(WhiteList) do
                 end
             end)
         end
-            UIS.InputEnded:connect(function(UserInput)
-                if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.Space then
-                    _G.Jump = false
-                end
-            end)
-        end
         
-        function Esp()
-            for i, Players in pairs(game.Players:GetChildren()) do
-                if Players.Name ~= Player.Name then
-                    if Players.Character:FindFirstChild("HumanoidRootPart") then
-                        local Highlight = Instance.new("Highlight", Players.Character)
-                        Highlight.FillTransparency = 0.5
-                        Highlight.OutlineColor = Color3.fromRGB(255,0,0)
-                        Highlight.FillTransparency = Color3.fromRGB(255,0,0)
-                    end
-                end
-            end
-        end
+        -- function Esp()
+        --     for i, Players in pairs(game.Players:GetChildren()) do
+        --         if Players.Name ~= Player.Name then
+        --             if Players.Character:FindFirstChild("HumanoidRootPart") then
+        --                 local Highlight = Instance.new("Highlight", Players.Character)
+        --                 Highlight.FillTransparency = 0.5
+        --                 Highlight.OutlineColor = Color3.fromRGB(255,0,0)
+        --                 Highlight.FillTransparency = Color3.fromRGB(255,0,0)
+        --             end
+        --         end
+        --     end
+        -- end
         
         local Tab = Window:CreateTab("Main", 4483362458)
         
