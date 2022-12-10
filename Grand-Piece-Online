@@ -156,7 +156,7 @@ for i, v in pairs(WhiteList) do
             local InfiniteJumpEnabled = true
             game:GetService("UserInputService").JumpRequest:connect(function()
                 if InfiniteJumpEnabled then
-                    wait(.09)
+                    wait(.05)
                     game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
                 end
             end)
