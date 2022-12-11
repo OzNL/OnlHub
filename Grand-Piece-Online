@@ -146,9 +146,9 @@ for i, v in pairs(WhiteList) do
 
             repeat
                 wait(1) Timer += 1 print(Timer)
-            until Timer == 30
+            until Timer == 60
 
-            if Timer == 30 then
+            if Timer == 60 then
                 _G.NoSpeed = true
             end
 
@@ -208,7 +208,7 @@ for i, v in pairs(WhiteList) do
         })
 
         local ButtonWalkSpeed = PlayerTab:CreateButton({
-            Name = "Flying Speed Bypass Click After You Landed ! (LeftControl For 30)",
+            Name = "Flying Speed Bypass Click After You Landed ! (LeftControl For 60Sec)",
             Callback = function()
                 FlySpeed()
             end,
