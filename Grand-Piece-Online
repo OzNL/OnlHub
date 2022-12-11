@@ -185,7 +185,7 @@ for i, v in pairs(WhiteList) do
         
         local SliderHitboxSize = Tab:CreateSlider({
             Name = "Hitbox Size",
-            Range = {0, 50},
+            Range = {0, 120},
             Increment = 1,
             Suffix = "Hitbox",
             CurrentValue = 2,
